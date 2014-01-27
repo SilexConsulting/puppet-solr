@@ -43,7 +43,7 @@ You need to have a working installation of tomcat 7. You can use https://github.
  To install solr with the default configuration, you only need to include the module
 
 
- """include solr"""
+ include solr
 
 
 ##Usage
