@@ -90,6 +90,7 @@ class solr::config(
 
   exec { 'solr-install-logging-jars':
     path      => ['/usr/bin', '/usr/sbin', '/bin'],
+    cwd       => "/tmp",
     command   => "jar xvf /tmp/solr-${solr_version}/dist/solr-${solr_version}.war; cp /tmp/solr-${solr_version}/example/lib/ext/*.jar ${solr::tomcat_home}/lib",
     onlyif    => "test ! -f ${solr::tomcat_home}/lib/log4j-1.2.16.jar",
     require   => Exec['solr-extract'],
