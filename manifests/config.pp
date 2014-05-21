@@ -18,7 +18,6 @@ class solr::config(
   $file_name                = "solr-${solr_version}.tgz"
   $download_site            = 'http://archive.apache.org/dist/lucene/solr/'
 
-  notify {"config is $config ":}
   # Copy configuration
   file { $solr::solr_conf_dir:
     ensure    => directory,
