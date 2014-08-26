@@ -11,7 +11,8 @@ class solr::config(
   $tomcat_home              = $::solr::params::tomcat_home
   $tomcat_basedir           = $::solr::params::tomcat_basedir
   $tomcat_user              = $::solr::params::tomcat_user
-  $tomcat_group             = $::solr::params::tomcat_user
+  $tomcat_group             = $::solr::params::tomcat_group
+  $tomcat_version           = $::solr::params::tomcat_version
   $solr_home                = $::solr::params::solr_home
   $solr_conf_dir            = $::solr::params::solr_conf_dir
   $solr_version             = $::solr::params::solr_version
@@ -26,7 +27,7 @@ class solr::config(
     purge     => $source_dir_purge,
     owner     => $tomcat_user,
     group     => $tomcat_group,
-    require   => Package['tomcat7'],
+    require   => Package["tomcat${solr::params::tomcat_version}"],
   }
 
   # Create the solr home directories
@@ -56,17 +57,17 @@ class solr::config(
 
 
   # Copy the solr context file for tomcat
-  file {"/etc/tomcat7/Catalina/localhost/solr.xml":
+  file {"/etc/tomcat${solr::params::tomcat_version}/Catalina/localhost/solr.xml":
     ensure    => 'present',
     content   => template('solr/solr_context.erb'),
-    require   => Package['tomcat7'],
+    require   => Package["tomcat${solr::params::tomcat_version}"],
   }
 
   file {"${solr::tomcat_basedir}/webapps":
     ensure    => directory,
     owner     => $tomcat_user,
     group     => $tomcat_group,
-    require   => Package['tomcat7'],
+    require   => Package["tomcat${solr::params::tomcat_version}"],
   }
 
   # download solr source to  /tmp:
@@ -131,7 +132,7 @@ class solr::config(
     owner     => $tomcat_user,
     group     => $tomcat_group,
     mode      => '0755',
-    require   => Package['tomcat7'],
+    require   => Package["tomcat${solr::params::tomcat_version}"],
   }
 
 }
