@@ -3,10 +3,6 @@
 class solr::install {
   include solr::params
 
-  package { 'default-jdk':
-    ensure  => present,
-  }
-
   package { 'wget':
     ensure  => present,
   }

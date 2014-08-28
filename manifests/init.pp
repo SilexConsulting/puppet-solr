@@ -21,7 +21,6 @@ class solr (
     'UNSET'   => $::solr::params::config,
     default   => $source_dir,
   }
-
   class { 'solr::install': } ->
   class { 'solr::config':
     config => $config,
