@@ -25,6 +25,7 @@ class solr::config(
     source    => $config,
     recurse   => true,
     purge     => $source_dir_purge,
+    force     => $source_dir_purge,
     owner     => $tomcat_user,
     group     => $tomcat_group,
     require   => Package["tomcat${solr::params::tomcat_version}"],
