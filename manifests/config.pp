@@ -113,6 +113,7 @@ class solr::config(
     ensure    => directory,
     recurse   => true,
     purge     => true,
+    force     => true,
     owner     => $tomcat_user,
     group     => $tomcat_group,
     source    => "/tmp/solr-${solr_version}/contrib",
