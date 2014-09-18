@@ -4,6 +4,4 @@
 # It ensures that the service is running
 #
 class solr::service {
-  include solr::params
-
 }
