@@ -18,14 +18,15 @@ class solr (
 ) inherits solr::params {
 
   $config = $source_dir ? {
-    'UNSET'   => $::solr::params::config,
+    'UNSET'   => $solr::params::config,
     default   => $source_dir,
   }
+
   class { 'solr::install': } ->
   class { 'solr::config':
     config => $config,
     source_dir_purge => $source_dir_purge,
   } ~>
-  Class['tomcat::service'] ->
-  Class['solr']
+  Service[$solr::params::tomcat_service] ->
+  Class['solr', 'tomcat']
 }
