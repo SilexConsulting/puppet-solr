@@ -14,7 +14,7 @@ class solr::params {
   $solr_home        = '/usr/share/solr'
   $solr_conf_dir    = '/etc/solr'
   $solr_version     = '4.6.0'
-  $download_site    = 'http://archive.apache.org/dist/lucene/solr/'
+  $download_site    = 'http://archive.apache.org/dist/lucene/solr'
 
   $file_name        = "solr-${solr_version}.tgz"
   $tomcat_home      = "/usr/share/tomcat${tomcat_version}"
